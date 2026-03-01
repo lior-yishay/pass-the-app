@@ -1,6 +1,6 @@
 # pass-the-app
-broken phone, but for devs. 
-Each day, we would work on a different path with a different project without communicating about the project. 
+Telephone, but for devs. 
+Each day, we would work on a different path with a different project without communicating about it. 
 You can develop whatever you want and add any feature you desire.
 
 ## How The Game Would Work
