@@ -1,0 +1,49 @@
+.page {
+  font-family: system-ui, Arial, sans-serif;
+  padding: 24px;
+}
+
+.hint {
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
+/* The trolling button */
+.slipBtn {
+  position: fixed; /* key: it can roam anywhere */
+  left: 0;
+  top: 0;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  transition: transform 60ms linear; /* tiny smoothing */
+}
+
+.slipBtn:active {
+  transform: scale(0.98); /* but it still moves away anyway */
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: grid;
+  place-items: center;
+}
+
+.card {
+  background: white;
+  padding: 18px 20px;
+  border-radius: 16px;
+  width: min(420px, 92vw);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+
+.small {
+  opacity: 0.7;
+  font-size: 12px;
+}
