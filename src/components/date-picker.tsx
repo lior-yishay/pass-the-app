@@ -1,5 +1,5 @@
 import * as React from "react";
-import { format } from "date-fns";
+import { format, setDate } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { he as heDayPicker } from "react-day-picker/locale";
 import { Button } from "@/components/ui/button";
@@ -10,27 +10,35 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-export function DatePickerDemo() {
-  const [date, setDate] = React.useState<Date>();
+type DatePickerDemoProps = {
+  date: Date | undefined;
+  setDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
+};
 
+export function DatePickerDemo(dateProps: DatePickerDemoProps) {
   return (
     <Popover>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
-          data-empty={!date}
+          data-empty={!dateProps.date}
           className="w-[280px] justify-start text-left font-normal data-[empty=true]:text-muted-foreground"
         >
           <CalendarIcon />
-          {date ? format(date, "PPP") : <span>נא לבחור תאריך</span>}
+          {dateProps.date ? (
+            format(dateProps.date, "dd/MM/yyyy")
+          ) : (
+            <span>נא לבחור תאריך</span>
+          )}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0">
         <Calendar
           mode="single"
           locale={heDayPicker}
-          selected={date}
-          onSelect={setDate}
+          selected={dateProps.date}
+          onSelect={dateProps.setDate}
+          disabled={{ before: new Date() }}
         />
       </PopoverContent>
     </Popover>
