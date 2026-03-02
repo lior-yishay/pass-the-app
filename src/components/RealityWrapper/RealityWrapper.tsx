@@ -2,14 +2,15 @@ import { useSelector } from "react-redux";
 import { Corruption } from "../../shared/types";
 import { motion } from "framer-motion";
 import { RootState } from "../../store/store";
-import UltraCorruption from "../UltraCorruption/UltraCorruption";
+import AlienCorruption from "../AlienCorruption/AlienCorruption";
+import { useAppSelector } from "../../hooks/reduxHooks";
 
 export const RealityWrapper = ({ children }: { children: React.ReactNode }) => {
-  const corruption = useSelector((state: RootState) => state.corruption.value);
+  const corruption = useAppSelector((state) => state.corruption.value);
 
-  const distortion = corruption * 0.08;
+  const distortion = corruption * 0.15;
   const blur = corruption > 60 ? corruption * 0.02 : 0;
-  const hue = corruption * 2;
+  const hue = corruption * 3;
 
   return (
     <motion.div
@@ -24,7 +25,7 @@ export const RealityWrapper = ({ children }: { children: React.ReactNode }) => {
       }}
       style={{ minHeight: "100vh" }}
     >
-      <UltraCorruption />
+      <AlienCorruption />
       {children}
     </motion.div>
   );

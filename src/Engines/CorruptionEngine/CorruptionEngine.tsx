@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { increase } from "../../store/corruptionSlice";
 import { RootState } from "../../store/store";
+import { useAppSelector } from "../../hooks/reduxHooks";
 
 const INCREMENT_ON_CLICK: number = 1;
 const INCREMENT_BY_TIME: number = 0.5;
@@ -11,7 +12,7 @@ export const CorruptionEngine = () => {
 
   const hasWhispered = useRef(false);
 
-  const corruption = useSelector((state: RootState) => state.corruption.value);
+  const corruption = useAppSelector((state) => state.corruption.value);
 
   useEffect(() => {
     const interval = setInterval(() => {

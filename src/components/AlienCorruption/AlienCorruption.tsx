@@ -2,16 +2,13 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { useEffect, useState } from "react";
+import { useAppSelector } from "../../hooks/reduxHooks";
 
-export const UltraCorruption = () => {
-  const corruption = useSelector((state: RootState) => state.corruption.value);
-
-  const [mounted, setMounted] = useState<boolean>(false);
+export const AlienCorruption = () => {
+  const corruption = useAppSelector((state) => state.corruption.value);
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    setMounted(true);
-
     const move = (event: MouseEvent) => {
       setMouse({
         x: event.clientX - 100,
@@ -25,7 +22,6 @@ export const UltraCorruption = () => {
   }, []);
 
   return (
-    mounted &&
     corruption >= 90 && (
       <motion.div
         animate={{
@@ -42,10 +38,10 @@ export const UltraCorruption = () => {
           pointerEvents: "none",
         }}
       >
-        👁️
+        👾☠️👾
       </motion.div>
     )
   );
 };
 
-export default UltraCorruption;
+export default AlienCorruption;
