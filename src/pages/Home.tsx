@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <Container style={{ textAlign: 'center', marginTop: '20vh' }}>
-      <Typography variant="h3">🚀</Typography>
+      <Typography variant="h3">🚀g</Typography>
       <Typography variant="h5" sx={{ mt: 2 }}>
         Counter: {value}
       </Typography>
