@@ -12,6 +12,7 @@ export default function SlipperyButton({
   difficulty = 1,
 }: Props) {
   const ref = useRef<HTMLButtonElement | null>(null);
+  const [caughtOnce, setCaughtOnce] = useState(false);
 
   // Start in the middle so you ALWAYS see it
   const [pos, setPos] = useState(() => ({
@@ -68,12 +69,14 @@ export default function SlipperyButton({
   };
 
   const onClick = (e: React.MouseEvent) => {
-    // Sometimes you "catch" it, mostly you don't 😈
-    const caught = Math.random() < 0.15;
-    if (caught) {
+    // ✅ First click always “catches” it
+    if (!caughtOnce) {
+      setCaughtOnce(true);
       onCaught?.();
       return;
     }
+
+    // After the first catch, keep trolling
     escape(e);
   };
 
@@ -89,7 +92,6 @@ export default function SlipperyButton({
         padding: "12px 18px",
         borderRadius: 12,
         border: "1px solid #ccc",
-        background: "red",
         cursor: "pointer",
         transition: "transform 60ms linear",
         boxShadow: "0 8px 18px rgba(0,0,0,0.15)",
