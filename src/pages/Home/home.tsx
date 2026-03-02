@@ -17,8 +17,6 @@ export const Home = () => {
   const handleClick = () => {
     if (date && answer) {
       setResult(fart(date, answer));
-    } else {
-      AlertDestructive();
     }
   };
 
