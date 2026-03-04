@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import './App.css';
+import './types/card.tsx';
 
 export default function App() {
   const [cards, setCards] = useState<Card[]>([]);
   const [flippedCards, setFlippedCards] = useState<number[]>([]); // Stores IDs
   const [moves, setMoves] = useState(0);
+  const EMOJIS = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼"];
 
   // Initialize and Shuffle Game
   const initializeGame = () => {
