@@ -26,11 +26,11 @@
   background-color: #810202;
 }
 
-#letter-overlay {
-  position: fixed;
-  pointer-events: none;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 97vh;
+.word {
+  font-family: fantasy;
+  font-size: 36px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
 }
+

@@ -1,0 +1,27 @@
+.valid-word {
+  color: #00ff88;
+}
+
+.invalid-shake {
+  animation: shake 0.4s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0px); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0px); }
+}
+
+.emoji-particle {
+  position: absolute;
+  font-size: 40px;
+  pointer-events: none;
+  animation: particle-fade 1.8s ease-out forwards;
+}
+
+@keyframes particle-fade {
+  from { opacity: 1; transform: scale(0.6); }
+  to { opacity: 0; transform: scale(1.6); }
+}

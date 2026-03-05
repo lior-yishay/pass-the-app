@@ -1,4 +1,13 @@
-export interface UserExample {
-    firstName: string,
-    lastName: string
+export interface Letter {
+    letter: string
+    x: number
+    y: number
+}
+
+export interface EmojiParticle {
+    emoji: string
+    x: number
+    y: number
+    dx: number
+    dy: number
 }
