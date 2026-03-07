@@ -78,7 +78,7 @@ export const calculateCowPrice = (cow:Cow): number => {
     return isLifeOfTheParty + yearsKickin + cowBreedImportance + (cowBMI > 18.5 ? cowBMI < 24.9 ? 400 : cowBMI < 30? 200: 0: 0)
 }
 
-export const calculateCowGrassEattingEfficiancy = (cow: Cow) => {
+export const calculateCowGrassEatingEfficiency = (cow: Cow) => {
     const relevantAPM = areaPerGrassTypePerMinute.find(apgtpm => apgtpm.grassType === cow.grassPreference)?.areaPerMinute ?? 0
     return cow.weightInKg * 0.8 * cow.heightInMeters * relevantAPM
 }

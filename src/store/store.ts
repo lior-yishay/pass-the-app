@@ -1,11 +1,28 @@
-import { configureStore } from '@reduxjs/toolkit'
-import exampleReducer from './exampleSlice'
+import { configureStore } from "@reduxjs/toolkit";
+import cowsReducer from "./cowSlice";
+
+import { persistStore, persistReducer } from "redux-persist";
+
+import storage from "redux-persist/lib/storage";
+
+import { combineReducers } from "redux";
+
+const rootReducer = combineReducers({
+  cows: cowsReducer,
+});
+
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: {
-    example: exampleReducer,
-  },
-})
+  reducer: { persistedReducer },
+});
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export const persistor = persistStore(store);
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
