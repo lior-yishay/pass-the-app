@@ -4,12 +4,15 @@ type Props = {
   label: string;
   onCaught?: () => void;
   difficulty?: number;
+  preventEnterClick?: boolean
 };
 
 export default function SlipperyButton({
   label,
   onCaught,
   difficulty = 1,
+  preventEnterClick = false
+
 }: Props) {
   const ref = useRef<HTMLButtonElement | null>(null);
   const [caughtOnce, setCaughtOnce] = useState(false);
@@ -102,6 +105,7 @@ export default function SlipperyButton({
       onMouseEnter={escape}
       onMouseDown={escape}
       onClick={onClick}
+      onKeyDown={(e) => e.key === 'Enter' && preventEnterClick && e.preventDefault()}
     >
       {label}
     </button>

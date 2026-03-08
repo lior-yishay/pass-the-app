@@ -1,25 +1,25 @@
-import React, { useState } from "react";
-import { Button, Container, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
+import { useState } from "react";
 
 import SlipperyButton from "../components/SlipperyButton";
 import Toast from "../components/Toast";
-import HackScreen from "./HackScreen";
 import { runCaughtSequence } from "../utils/runCaughtSequence";
+import HackScreen from "./HackScreen";
 
-// keep your existing redux imports if you use them
-// import { useAppDispatch, useAppSelector } from "../store/hooks";
-// import { increment } from "../store/counterSlice";
 
 export default function Home() {
-  // const dispatch = useAppDispatch();
-  // const value = useAppSelector((s) => s.counter.value);
 
   const [toast, setToast] = useState<string | null>(null);
   const [mode, setMode] = useState<"home" | "hack">("home");
+  const [isSaveButtonVisible, setVisibility] = useState<boolean>(false);
+  const [timeoutIDs, setTimeoutIDs] = useState<number[]>([]);
 
   const startCaughtSequence = () => {
+    setVisibility(true);
     runCaughtSequence({
       setToast,
+      countdownSeconds: 10,
+      setTimeoutIds: setTimeoutIDs,
       onDone: () => {
         setMode("hack");
         // “new page” feel without router:
@@ -28,22 +28,31 @@ export default function Home() {
     });
   };
 
+  const saveMyComputer = () => {
+    setToast("SAVED");
+    timeoutIDs.forEach(timeout => clearTimeout(timeout));
+  }
+
   if (mode === "hack") return <HackScreen />;
 
   return (
     <>
       <Container style={{ textAlign: "center", marginTop: "20vh" }}>
-        <Typography variant="h3">🚀</Typography>
-
-        <Typography variant="h5" sx={{ mt: 2 }}>
-          Counter: 0{/* Counter: {value} */}
-        </Typography>
+        <Typography variant="h1">⚠️</Typography>
 
         <SlipperyButton
-          label="Increment"
+          label="Don't Press Me"
           difficulty={1.4}
           onCaught={startCaughtSequence}
         />
+
+        {isSaveButtonVisible && <SlipperyButton
+          label="Make It Worse"
+          difficulty={5}
+          onCaught={saveMyComputer}
+          preventEnterClick
+        />}
+
       </Container>
 
       <Toast message={toast} />
